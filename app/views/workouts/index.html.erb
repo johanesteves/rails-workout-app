@@ -1,0 +1,8 @@
+<h1>Here are a list of your Workouts</h1>
+
+<ul>
+  <%@workouts.each do |workout| %>
+      <li><%= link_to workout.name, user_workout_path(workout.user, workout)%></li>
+  <% end %>
+
+</ul>
