@@ -1,0 +1,12 @@
+<h1><%=@workout.name%></h1>
+
+<div>
+  <%= form_for(@workout, url: user_workout_path(@workout.user, @workout)) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :date %>
+      <%= f.date_select :date, min: Time.now %>
+      <%=f.hidden_field :user_id%>
+      <%=f.submit %>
+  <% end %>
+</div>
