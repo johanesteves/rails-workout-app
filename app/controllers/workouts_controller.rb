@@ -1,22 +1,25 @@
 class WorkoutsController < ApplicationController
 
+  before_action :user_is_current_user, only: [:create]
+
   def index
-    @workouts = Workout.where(user_id: params[:user_id])
-    @workout = User.find(params[:user_id]).workouts.build
+    @workouts = current_user.workouts
+    @workout = current_user.workouts.build
   end
 
   def show
-    @workout = Workout.find_by(user_id: params[:user_id], id: params[:id])
+    @workout = current_user.workouts.find(params[:id])
     @exercises = @workout.exercises
   end
 
   def create
-    @workout = Workout.new(workout_params)
-    if @workout.save
-      redirect_to user_workout_path(@workout.user, @workout)
+      @workout = Workout.new(workout_params)
+      if @workout.save
+        redirect_to workout_path(@workout)
+      else
+        render :index
+      end
     else
-      render :index
-    end
   end
 
   def edit
