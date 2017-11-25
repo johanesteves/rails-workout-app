@@ -1,10 +1,11 @@
 class ExercisesController < ApplicationController
+  before_action :set_exercise, only: [:show, :edit, :update]
+
   def index
     @exercises = Exercise.all
   end
 
   def show
-    @exercise = Exercise.find(params[:id])
   end
 
   def new
@@ -20,9 +21,24 @@ class ExercisesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @exercise.update(exercise_params)
+      redirect_to exercise_path(@exercise)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def exercise_params
     params.require(:exercise).permit(:name, :bodypart)
+  end
+
+  def set_exercise
+    @exercise = Exercise.find(params[:id])
   end
 end
