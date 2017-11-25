@@ -1,0 +1,15 @@
+<h1><%=@workout.name %> exercises</h1>
+
+<%=form_for(@workout) do |f| %>
+    <%= f.collection_check_boxes :exercise_ids, Exercise.all, :id, :name %><br><br>
+
+    <%=f.fields_for :exercises, @workout.exercises.build do |exercise_builder|%>
+        <%=exercise_builder.label "New Exercise:" %>
+        <%=exercise_builder.text_field :name %>
+        <%=exercise_builder.label :bodypart %>
+        <%=exercise_builder.text_field :bodypart %>
+        <br>
+    <% end %>
+
+    <%=f.submit%>
+<% end %>

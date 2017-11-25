@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
-  # resources :users, only: [] do
-  # end
 
-  resources :workouts
+  resources :workouts do
+    resources :exercises, :controller=>"workout_exercises"
+  end
   resources :exercises
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

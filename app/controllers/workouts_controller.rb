@@ -1,43 +1,47 @@
 class WorkoutsController < ApplicationController
-
-  before_action :user_is_current_user, only: [:create]
+  before_action :authenticate_user!
+  before_action :set_workout, only: [:show, :edit, :update, :destroy]
 
   def index
     @workouts = current_user.workouts
-    @workout = current_user.workouts.build
+    @workout = Workout.new
   end
 
   def show
-    @workout = current_user.workouts.find(params[:id])
-    @exercises = @workout.exercises
+    @exercise = Exercise.new
   end
 
   def create
-      @workout = Workout.new(workout_params)
-      if @workout.save
-        redirect_to workout_path(@workout)
-      else
-        render :index
-      end
-    else
+    @workout = current_user.workouts.build(workout_params)
+    @workout.save
+    redirect_to workouts_path
   end
 
-  def edit
-    @workout = Workout.find_by(user_id: params[:user_id], id: params[:id])
-  end
+  def edit; end
 
   def update
-    @workout = Workout.find_by(user_id: params[:user_id], id: params[:id])
     if @workout.update(workout_params)
-      redirect_to user_workout_path(@workout.user, @workout)
+      redirect_to workout_path(@workout)
     else
       render :edit
     end
   end
 
+  def destroy
+    if @workout.destroy
+      redirect_to workouts_path
+    else
+      render :show
+    end
+  end
 
   private
+
   def workout_params
-    params.require(:workout).permit(:name, :date, :user_id)
+    params.require(:workout).permit(:name, :date, exercise_ids: [], exercises_attributes: [:name, :bodypart])
+  end
+
+  def set_workout
+    @workout = current_user.workouts.find_by(id: params[:id])
   end
 end

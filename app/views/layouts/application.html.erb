@@ -6,6 +6,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if user_signed_in? %>
+        <li>
+          <%= link_to('Update Account', edit_user_registration_path) %>
+        </li>
+        <li>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        </li>
+        <li>
+          <%= link_to('Workouts', workouts_path) %>
+        </li>
+    <% else %>
+        <li>
+          <%= link_to('Register', new_user_registration_path)  %>
+        </li>
+        <li>
+          <%= link_to('Login', new_user_session_path)  %>
+        </li>
+    <% end %>
+        <li>
+          <%= link_to('Exercises', exercises_path) %>
+        </li>
   </head>
 
   <body>

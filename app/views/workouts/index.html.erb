@@ -5,8 +5,7 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
       <%= f.label :date %>
-      <%= f.date_select :date, min: Time.now %>
-      <%=f.hidden_field :user_id%>
+      <%= f.date_select :date, max: Time.now %>
       <%=f.submit %>
   <% end %>
 </div>
