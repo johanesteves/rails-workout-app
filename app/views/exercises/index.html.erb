@@ -1,4 +1,4 @@
-<h2>All exercises</h2>
+<h2>Exercises</h2>
 
 <%=form_tag(exercises_path, method: :get) do %>
     <%=select_tag :filter, options_for_select(Exercise.all.pluck(:bodypart).uniq, params[:filter]), include_blank: 'All' %>

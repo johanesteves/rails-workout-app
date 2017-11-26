@@ -1,4 +1,4 @@
 <h1>Hello Welcome to this app</h1>
 <h1><%=current_user.email if current_user%></h1>
 
-<%= link_to "Sign in with Github", user_github_omniauth_authorize_path %>
+<%= link_to "Sign in with Github", user_github_omniauth_authorize_path unless signed_in?%>

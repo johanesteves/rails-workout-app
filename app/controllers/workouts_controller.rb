@@ -3,13 +3,16 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy, :exercises]
 
   def index
-    # Workout.current_week(current_user.workouts)
-    @workouts = current_user.workouts.group_by {|workout|workout.date}.sort.reverse!
+    @workouts = current_user.workouts.sorted_by_date
     @workout = Workout.new
   end
 
   def show
     @exercise = Exercise.new
+  end
+
+  def current_week
+    @workouts = current_user.workouts.current_week.sorted_by_date
   end
 
   def create

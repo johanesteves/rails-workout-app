@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
-
+  get 'workouts/current_week', to: 'workouts#current_week', as: 'workout_current_week'
   resources :workouts
   get 'workouts/:id/exercises', to: 'workouts#exercises', as: 'workout_exercises'
 

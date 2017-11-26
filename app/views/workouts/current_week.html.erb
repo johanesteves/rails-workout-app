@@ -1,8 +1,5 @@
-<h2>Workouts</h2>
-
-<%=render 'form', workout: @workout %>
-<br>
-<%=button_to "Current Week's Progress", workout_current_week_path, method: :get%>
+<h2>Weekly Progress</h2>
+<h6><%=full_date(Date.today.at_beginning_of_week)%> - <%=full_date(Date.today.at_end_of_week)%></h6>
 <br>
 
 <%@workouts.each do |date, workouts| %>
