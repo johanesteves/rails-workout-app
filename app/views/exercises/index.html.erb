@@ -1,5 +1,10 @@
 <h1>Here are our current exercises</h1>
 
+<%=form_tag(exercises_path, method: :get) do %>
+    <%=select_tag :filter, options_for_select(Exercise.all.pluck(:bodypart).uniq, params[:filter]), include_blank: 'All' %>
+    <%=submit_tag 'Filter', name: nil %>
+<% end %>
+
 <ul>
   <% @exercises.each do |exercise| %>
     <li><%=link_to exercise.name, exercise_path(exercise)%></li>

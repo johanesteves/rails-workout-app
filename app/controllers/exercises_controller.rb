@@ -1,8 +1,9 @@
 class ExercisesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_exercise, only: [:show, :edit, :update]
 
   def index
-    @exercises = Exercise.all
+    @exercises = Exercise.filter_bodypart(params[:filter])
   end
 
   def show
