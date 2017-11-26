@@ -1,10 +1,10 @@
 class WorkoutsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_workout, only: [:show, :edit, :update, :destroy]
+  before_action :set_workout, only: [:show, :edit, :update, :destroy, :exercises]
 
   def index
-    @workouts = current_user.workouts #Workout.current_week(current_user.workouts)
-    @sorted_workouts = @workouts.group_by {|workout|workout.date}.sort
+    # Workout.current_week(current_user.workouts)
+    @sorted_workouts = current_user.workouts.group_by {|workout|workout.date}.sort
     @workout = Workout.new
   end
 
@@ -17,7 +17,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to workouts_path
     else
-      redirect_to workouts_path, :flash => { :error => @workout.errors.full_messages.join(', ') }
+      redirect_to workouts_path, flash: { error: @workout.errors.full_messages.join('. ') }
     end
 
   end
@@ -38,6 +38,9 @@ class WorkoutsController < ApplicationController
     else
       render :show
     end
+  end
+
+  def exercises
   end
 
   private

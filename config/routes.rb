@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   root 'application#index'
 
 
-  resources :workouts do
-    resources :exercises, :controller=>"workout_exercises"
-  end
+  resources :workouts
+  get 'workouts/:id/exercises', to: 'workouts#exercises', as: 'workout_exercises'
+
   resources :exercises
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

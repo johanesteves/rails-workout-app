@@ -18,7 +18,7 @@ class Workout < ApplicationRecord
     end
   end
 
-    # def self.current_week(workouts)
+  # def self.current_week(workouts)
   #   workouts.where("date BETWEEN ? AND ?", Date.today.at_beginning_of_week, Date.today.at_end_of_week)
   # end
 end
