@@ -1,23 +1,5 @@
 <h1><%=@workout.name%></h1>
 
-<% if @workout.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
+<%=render 'shared/errors_messages', object: @workout%>
 
-      <ul>
-        <% @workout.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
-
-<div>
-  <%= form_for(@workout) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :date %>
-      <%= f.date_select :date, min: Time.now %>
-      <%=f.submit %>
-  <% end %>
-</div>
+<%=render 'form', workout: @workout %>

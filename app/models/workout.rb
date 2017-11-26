@@ -8,6 +8,12 @@ class Workout < ApplicationRecord
 
   def exercises_attributes=(exercise_attributes)
     exercise_attributes.each_value do |exercise_params|
+      # exercise = Exercise.where(exercise_params).first_or_create
+      # if exercise.errors.full_messages.first
+      #   exercise.errors.full_messages.first
+      # else
+      #   exercises << exercise unless exercise_params.values.any? {|i| i.empty? }
+      # end
       exercises << Exercise.where(exercise_params).first_or_create unless exercise_params.values.any? {|i| i.empty? }
     end
   end

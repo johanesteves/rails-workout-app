@@ -1,0 +1,9 @@
+<div>
+  <%= form_for(workout) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :date %>
+      <%= f.date_field :date, max: Date.today, value: (Date.today unless workout.date)%>
+      <%=f.submit %>
+  <% end %>
+</div>

@@ -7,7 +7,7 @@
         <%=exercise_builder.label "New Exercise:" %>
         <%=exercise_builder.text_field :name %>
         <%=exercise_builder.label :bodypart %>
-        <%=exercise_builder.text_field :bodypart %>
+        <%=exercise_builder.select :bodypart, Exercise.body_parts, {include_blank: "- - - - -"} %>
         <br>
     <% end %>
 

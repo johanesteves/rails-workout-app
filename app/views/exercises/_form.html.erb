@@ -2,7 +2,7 @@
     <%=f.label :name %>
     <%=f.text_field :name%><br> <br>
     <%=f.label :bodypart %>
-    <%=f.text_field :bodypart%><br> <br>
+    <%=f.select :bodypart, Exercise.body_parts, {include_blank: "-select-"}%><br> <br>
 
     <%=f.submit %>
 <% end %>

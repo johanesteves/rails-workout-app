@@ -1,6 +1,9 @@
 <h2><%=@workout.name %></h2>
+
+<%= render 'shared/errors_messages', object: @workout %>
+
 <h4>
-  Date: <%=@workout.date%> <%= link_to "Edit", edit_workout_path(@workout) %> | <%= link_to "Delete", workout_path(@workout), method: :delete %>
+  Date: <%=full_date(@workout.date)%> <%= link_to "Edit", edit_workout_path(@workout) %> | <%= link_to "Delete", workout_path(@workout), method: :delete %>
 </h4>
 
 <div>

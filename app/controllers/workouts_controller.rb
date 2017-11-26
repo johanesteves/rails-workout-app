@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
 
   def index
     # Workout.current_week(current_user.workouts)
-    @sorted_workouts = current_user.workouts.group_by {|workout|workout.date}.sort
+    @workouts = current_user.workouts.group_by {|workout|workout.date}.sort.reverse!
     @workout = Workout.new
   end
 
@@ -14,12 +14,8 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = current_user.workouts.build(workout_params)
-    if @workout.save
-      redirect_to workouts_path
-    else
-      redirect_to workouts_path, flash: { error: @workout.errors.full_messages.join('. ') }
-    end
-
+    @workout.save
+    redirect_to workouts_path, flash: { error: @workout.errors.full_messages.join('. ') }
   end
 
   def edit; end
@@ -40,8 +36,7 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def exercises
-  end
+  def exercises; end
 
   private
 

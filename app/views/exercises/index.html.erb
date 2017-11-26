@@ -5,11 +5,8 @@
     <%=submit_tag 'Filter', name: nil %>
 <% end %>
 <br>
-<%=button_to "Add Exercise", new_exercise_path, method: :get%>
+<%=button_to 'Add Exercise', new_exercise_path, method: :get%>
 
 <ul>
-  <% @exercises.each do |exercise| %>
-    <li><%=link_to exercise.name, exercise_path(exercise)%></li>
-  <% end %>
+  <%= render(@exercises) || 'There are no exercises at the moment.' %>
 </ul>
-

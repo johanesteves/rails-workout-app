@@ -1,31 +1,11 @@
 <h1>Here are a list of your Workouts</h1>
 
-<div>
-  <% if @workout.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
+<%=render 'form', workout: @workout %>
 
-        <ul>
-          <% @workout.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-  <% end %>
-
-  <%= form_for(@workout) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :date %>
-      <%= f.date_select :date, max: Time.now %>
-      <%=f.submit %>
-  <% end %>
-</div>
-
-<%@sorted_workouts.each do |date, workouts| %>
+<%@workouts.each do |date, workouts| %>
     <ul>
       <li>
-        <%=date.strftime("%b %e, %y")%><br>
+        <%=full_date(date)%><br>
 
         <% workouts.each do |workout| %>
             <%= link_to workout.name, workout_path(workout)%><br>

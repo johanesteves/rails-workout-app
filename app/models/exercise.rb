@@ -20,4 +20,8 @@ class Exercise < ApplicationRecord
       where(bodypart: bodypart).order('name ASC')
     end
   end
+
+  def self.body_parts
+    Exercise::BODY_PARTS
+  end
 end
