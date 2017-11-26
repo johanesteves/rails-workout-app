@@ -1,5 +1,17 @@
 <h1>Create a new exercise</h1>
 
+<% if @exercise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
+
+      <ul>
+        <% @exercise.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
 <%=form_for(@exercise) do |f| %>
     <%=f.label :name %>
     <%=f.text_field :name%><br> <br>

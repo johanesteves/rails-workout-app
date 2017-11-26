@@ -1,6 +1,16 @@
 class Exercise < ApplicationRecord
+  BODY_PARTS = [
+    'Shoulders', 'Chest', 'Arms', 'Biceps', 'Triceps', 'Forearm',
+    'Abs', 'Back', 'Legs', 'Full Body'
+  ].freeze
+
   has_many :exercise_workouts
   has_many :workouts, through: :exercise_workouts
+
+  validates :name, presence: true
+  validates_uniqueness_of :name, scope: :bodypart
+  validates :bodypart, inclusion: { in: BODY_PARTS,
+                                    message: '%{value} is not a valid body part.' }
 
   def self.filter_bodypart(bodypart)
     if bodypart.blank?
