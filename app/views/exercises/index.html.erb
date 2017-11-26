@@ -1,7 +1,8 @@
 <h2>Exercises</h2>
+<br>
 
 <%=form_tag(exercises_path, method: :get) do %>
-    <%=select_tag :filter, options_for_select(Exercise.all.pluck(:bodypart).uniq, params[:filter]), include_blank: 'All' %>
+    <%=select_tag :filter, options_for_select(Exercise.body_parts, params[:filter]), include_blank: 'All', class: 'form-control' %>
     <%=submit_tag 'Filter', name: nil %>
 <% end %>
 <br>

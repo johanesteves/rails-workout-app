@@ -18,7 +18,7 @@ class WorkoutsController < ApplicationController
   def create
     @workout = current_user.workouts.build(workout_params)
     @workout.save
-    redirect_to workouts_path, flash: { error: @workout.errors.full_messages.join('. ') }
+    redirect_to workouts_path, flash: { danger: @workout.errors.full_messages.join('. ') }
   end
 
   def edit; end

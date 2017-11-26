@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update]
 
   def index
-    @exercises = Exercise.filter_bodypart(params[:filter])
+    @exercises = Exercise.filter_body_part(params[:filter])
   end
 
   def show; end

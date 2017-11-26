@@ -11,13 +11,13 @@ class Exercise < ApplicationRecord
   validates_uniqueness_of :name, scope: :bodypart
   validates :bodypart, presence: true
   validates :bodypart, inclusion: { in: BODY_PARTS,
-                                    message: '%{value} is not a valid body part.' }
+                                    message: '%{value} is not a valid' }
 
-  def self.filter_bodypart(bodypart)
-    if bodypart.blank?
+  def self.filter_body_part(body_part)
+    if body_part.blank?
       order('name ASC')
     else
-      where(bodypart: bodypart).order('name ASC')
+      where(bodypart: body_part).order('name ASC')
     end
   end
 
