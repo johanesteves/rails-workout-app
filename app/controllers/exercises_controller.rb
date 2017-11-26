@@ -6,8 +6,7 @@ class ExercisesController < ApplicationController
     @exercises = Exercise.filter_bodypart(params[:filter])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @exercise = Exercise.new
@@ -22,8 +21,7 @@ class ExercisesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @exercise.update(exercise_params)

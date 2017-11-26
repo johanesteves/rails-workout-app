@@ -6,14 +6,6 @@
   Date: <%=full_date(@workout.date)%> <%= link_to "Edit", edit_workout_path(@workout) %> | <%= link_to "Delete", workout_path(@workout), method: :delete %>
 </h4>
 
-<div>
-  <ul>
-    <% @workout.exercises.each do |exercise| %>
-        <li>
-          <%= link_to exercise.name, exercise_path(exercise) %> | <%= exercise.bodypart %>
-        </li>
-    <% end %>
-  </ul>
-</div>
+<%=render partial: 'exercises/exercise', collection: @workout.exercises %>
 
 <%= link_to "Add Exercises", workout_exercises_path(@workout) %>
