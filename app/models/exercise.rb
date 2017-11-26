@@ -4,9 +4,9 @@ class Exercise < ApplicationRecord
 
   def self.filter_bodypart(bodypart)
     if bodypart.blank?
-      all
+      order('name ASC')
     else
-      where(bodypart: bodypart)
+      where(bodypart: bodypart).order('name ASC')
     end
   end
 end

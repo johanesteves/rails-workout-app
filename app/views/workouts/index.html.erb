@@ -10,9 +10,14 @@
   <% end %>
 </div>
 
-<ul>
-  <%@workouts.each do |workout| %>
-      <li><%= link_to workout.name, workout_path(workout)%></li>
-  <% end %>
+<%@sorted_workouts.each do |date, workouts| %>
+    <ul>
+      <li>
+        <%=date.strftime("%b %e, %y")%><br>
 
-</ul>
+        <% workouts.each do |workout| %>
+            <%= link_to workout.name, workout_path(workout)%><br>
+        <% end %>
+      </li>
+    </ul>
+<% end %>

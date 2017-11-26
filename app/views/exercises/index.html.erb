@@ -1,9 +1,11 @@
-<h1>Here are our current exercises</h1>
+<h2>All exercises</h2>
 
 <%=form_tag(exercises_path, method: :get) do %>
     <%=select_tag :filter, options_for_select(Exercise.all.pluck(:bodypart).uniq, params[:filter]), include_blank: 'All' %>
     <%=submit_tag 'Filter', name: nil %>
 <% end %>
+<br>
+<%=button_to "Add Exercise", new_exercise_path, method: :get%>
 
 <ul>
   <% @exercises.each do |exercise| %>

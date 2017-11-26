@@ -3,7 +3,8 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
 
   def index
-    @workouts = current_user.workouts
+    @workouts = current_user.workouts #Workout.current_week(current_user.workouts)
+    @sorted_workouts = @workouts.group_by {|workout|workout.date}
     @workout = Workout.new
   end
 
