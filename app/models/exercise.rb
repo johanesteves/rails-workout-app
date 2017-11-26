@@ -9,6 +9,7 @@ class Exercise < ApplicationRecord
 
   validates :name, presence: true
   validates_uniqueness_of :name, scope: :bodypart
+  validates :bodypart, presence: true
   validates :bodypart, inclusion: { in: BODY_PARTS,
                                     message: '%{value} is not a valid body part.' }
 
