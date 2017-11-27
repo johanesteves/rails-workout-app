@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def full_date(date)
-    if date.today?
+    if date.in_time_zone.today?
       'Today'
     else
       date.strftime('%b %e, %y')
@@ -16,18 +16,18 @@ module ApplicationHelper
     end
   end
 
-  def bootstrap_class_for flash_type
+  def bootstrap_class_for(flash_type)
     case flash_type
-      when "success"
-        "success"
-      when "error"
-        "danger"
-      when "alert"
-        "warning"
-      when "notice"
-        "info"
-      else
-        flash_type.to_s
+    when 'success'
+      'success'
+    when 'error'
+      'danger'
+    when 'alert'
+      'warning'
+    when 'notice'
+      'info'
+    else
+      flash_type.to_s
     end
   end
 

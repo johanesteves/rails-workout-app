@@ -1,15 +1,15 @@
 <h1><%=@workout.name %> exercises</h1>
 
-<%=form_for(@workout) do |f| %>
-    <%= f.collection_check_boxes :exercise_ids, Exercise.all, :id, :name %><br><br>
-
+<%=form_for(@workout, html: {class: 'form-inline'}) do |f| %>
+    <%= f.collection_check_boxes :exercise_ids, Exercise.all, :id, :name do |b| %>
+        <%=b.check_box(class: "form-check-input")%>  <%=b.label(class:"form-check-label")%>
+    <% end %><br><br>
     <%=f.fields_for :exercises, @workout.exercises.build do |exercise_builder|%>
-        <%=exercise_builder.label "New Exercise:" %>
-        <%=exercise_builder.text_field :name %>
-        <%=exercise_builder.label :bodypart %>
-        <%=exercise_builder.select :bodypart, Exercise.body_parts, {include_blank: "- - - - -"} %>
+        <%=exercise_builder.text_field :name, class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: "Exercise name"%>
+        <%=exercise_builder.label :bodypart, "Body Part: ", class:'mr-sm-2' %>
+        <%=exercise_builder.select :bodypart, Exercise.body_parts, {include_blank: "Choose..."},class:'custom-select mb-2 mr-sm-2 mb-sm-0'%>
         <br>
     <% end %>
-
-    <%=f.submit%>
+    <br>
+    <%=f.submit class: 'btn btn-success'%>
 <% end %>

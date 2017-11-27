@@ -17,14 +17,19 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = current_user.workouts.build(workout_params)
-    @workout.save
-    redirect_to workouts_path, flash: { danger: @workout.errors.full_messages.join('. ') }
+    if @workout.save
+      flash[:success] = 'Workout created successfully.'
+      redirect_to workouts_path
+    else
+      redirect_to workouts_path, flash: { danger: @workout.errors.full_messages.join('. ') }
+    end
   end
 
   def edit; end
 
   def update
     if @workout.update(workout_params)
+      flash[:success] = 'Workout updated successfully.'
       redirect_to workout_path(@workout)
     else
       render :edit
@@ -33,6 +38,7 @@ class WorkoutsController < ApplicationController
 
   def destroy
     if @workout.destroy
+      flash[:success] = 'Workout deleted successfully.'
       redirect_to workouts_path
     else
       render :show

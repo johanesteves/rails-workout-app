@@ -2,8 +2,8 @@
 
 <%=render 'form', workout: @workout %>
 <br>
-<%=button_to "Current Week's Progress", workout_current_week_path, method: :get%>
-<br>
+<%=link_to "Current Week's Progress", workout_current_week_path, class: "btn btn-md btn-secondary"%>
+<br><br>
 
 <%@workouts.each do |date, workouts| %>
     <ul>
