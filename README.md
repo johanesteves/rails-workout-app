@@ -19,7 +19,7 @@ And then execute:
 
 To start:
 
-    $ Copy the IP address that displays into your browser 
+    $ Copy the IP address (localhost:3000) that displays into your browser 
 
 ## Contributing
 
