@@ -1,24 +1,34 @@
-# README
+# Workouts 4 Coders
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to the Workouts 4 Coders app. This app will allow you to create workouts and track your exercises to allow to get back in shape. 
 
-Things you may want to cover:
 
-* Ruby version
+## Installation
 
-* System dependencies
+Once cloned, execute: 
 
-* Configuration
+    $ cd WorkoutApp
+    $ bundle install
+    $ rake db:migrate
 
-* Database creation
+And then execute:
 
-* Database initialization
+    $ rails s
 
-* How to run the test suite
+## Usage
 
-* Services (job queues, cache servers, search engines, etc.)
+To start:
 
-* Deployment instructions
+    $ Copy the IP address that displays into your browser 
 
-* ...
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/johanesteves/rails-workout-app/. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the TopBoardGames project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/johanesteves/rails-workout-app/blob/master/CODE_OF_CONDUCT.md).
