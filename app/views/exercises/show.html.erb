@@ -1,5 +1,4 @@
-<h1><%=@exercise.name%></h1>
-
-<h3>Body Part: <%=@exercise.bodypart%></h3>
-
-<%= link_to "Edit", edit_exercise_path(@exercise) %>
+<h2><%=@exercise.name%> <small>| <%=@exercise.bodypart%></small></h2>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%= link_to "Edit", edit_exercise_path(@exercise), class: "btn btn-secondary" %>
+</div>

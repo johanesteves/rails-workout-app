@@ -19,10 +19,10 @@ class WorkoutsController < ApplicationController
     @workout = current_user.workouts.build(workout_params)
     if @workout.save
       flash[:success] = 'Workout created successfully.'
-      redirect_to workouts_path
     else
-      redirect_to workouts_path, flash: { danger: @workout.errors.full_messages.join('. ') }
+      flash[:danger] = @workout.errors.full_messages.join('. ')
     end
+    redirect_to workouts_path
   end
 
   def edit; end
