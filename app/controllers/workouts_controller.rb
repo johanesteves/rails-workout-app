@@ -7,6 +7,10 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new
   end
 
+  def new
+    @workout = Workout.new
+  end
+
   def show
     @exercise = Exercise.new
   end
