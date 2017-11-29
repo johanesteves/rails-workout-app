@@ -25,6 +25,7 @@ class WorkoutsController < ApplicationController
       flash[:success] = 'Workout created successfully.'
     else
       flash[:danger] = @workout.errors.full_messages.join('. ')
+      return redirect_to new_workout_path if params[:workout][:exercise_ids]
     end
     redirect_to workouts_path
   end
