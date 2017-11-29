@@ -2,14 +2,4 @@
 <h6><%=full_date(Date.today.at_beginning_of_week)%> - <%=full_date(Date.today.at_end_of_week)%></h6>
 <br>
 
-<%@workouts.each do |date, workouts| %>
-    <ul>
-      <li>
-        <%=full_date(date)%><br>
-
-        <% workouts.each do |workout| %>
-            <%= link_to workout.name, workout_path(workout)%><br>
-        <% end %>
-      </li>
-    </ul>
-<% end %>
+<%= render 'sorted_workouts', sorted_workouts: @workouts %>

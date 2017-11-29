@@ -5,14 +5,4 @@
 <%=link_to "Current Week's Progress", workout_current_week_path, class: "btn btn-md btn-secondary"%>
 <br><br>
 
-<%@workouts.each do |date, workouts| %>
-    <ul>
-      <li>
-        <%=full_date(date)%><br>
-
-        <% workouts.each do |workout| %>
-            <%= link_to workout.name, workout_path(workout)%><br>
-        <% end %>
-      </li>
-    </ul>
-<% end %>
+<%= render 'sorted_workouts', sorted_workouts: @workouts %>
