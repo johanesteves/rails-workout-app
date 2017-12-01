@@ -9,6 +9,8 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout = Workout.new
+    4.times{ |i| @workout.exercise_workouts.build }
+    @exercises = Exercise.all
   end
 
   def show
@@ -33,6 +35,7 @@ class WorkoutsController < ApplicationController
   def edit; end
 
   def update
+    binding.pry
     if @workout.update(workout_params)
       flash[:success] = 'Workout updated successfully.'
       redirect_to workout_path(@workout)
@@ -55,7 +58,7 @@ class WorkoutsController < ApplicationController
   private
 
   def workout_params
-    params.require(:workout).permit(:name, :date, exercise_ids: [], exercises_attributes: [:name, :bodypart])
+    params.require(:workout).permit(:name, :date, exercise_ids: [], exercises_attributes: [:name, :bodypart, :exercise_id, :reps])
   end
 
   def set_workout
