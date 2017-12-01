@@ -35,7 +35,6 @@ class WorkoutsController < ApplicationController
   def edit; end
 
   def update
-    binding.pry
     if @workout.update(workout_params)
       flash[:success] = 'Workout updated successfully.'
       redirect_to workout_path(@workout)
