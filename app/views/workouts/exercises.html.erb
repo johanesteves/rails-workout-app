@@ -1,15 +1,21 @@
 <h1><%=@workout.name %> exercises</h1>
-
+<br>
 <%=form_for(@workout) do |f| %>
-  <div class = "form-inline">
-    <%= f.collection_check_boxes :exercise_ids, Exercise.all, :id, :name do |b| %>
-      <div class = "form-check form-check-inline">
-      <%=b.check_box(class: "form-check-input")%>  <%=b.label(class:"form-check-label")%>
-      </div>
-    <% end %><br>
-  </div>
+
   <br>
-  <div class="form-inline" %>
+
+  <h4>Update Existing Reps</h4>
+  <%=f.fields_for :exercises, @workout.exercise_workouts do |ew|%>
+    <div class = "form-inline">
+      <%=ew.collection_select :exercise_id, Exercise.all, :id, :name, {include_blank: "Choose..."}, class:'custom-select mb-2 mr-sm-2 mb-sm-0' %>
+      <%=ew.label :reps, "Reps: " %>
+      <%=ew.text_field :reps, placeholder: "0", class: 'form-control mb-2 mr-sm-2 mb-sm-0' %>
+    </div>
+  <% end %>
+  <br>
+
+  <h4>Add new Exercise</h4>
+  <div class="form-inline">
     <%=f.fields_for :exercises, @workout.exercises.build do |exercise_builder|%>
         <%=exercise_builder.text_field :name, class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: 'Add exercise'%>
         <%=exercise_builder.label :bodypart, "Body Part: ", class:'mr-sm-2' %>

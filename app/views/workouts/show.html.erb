@@ -8,5 +8,9 @@
 </div>
 <br>
 <br>
-<%=render partial: 'exercises/exercise', collection: @workout.exercises %>
 
+<% @workout.exercise_workouts.each do |exercise_workout| %>
+  <li>
+    <%=link_to exercise_workout.exercise.name, exercise_path(exercise_workout.exercise)%> | <em><%= exercise_workout.exercise.bodypart %></em> | Reps: <%=exercise_workout.reps %>
+  </li>
+<% end %>

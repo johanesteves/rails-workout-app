@@ -2,26 +2,30 @@
 
 <%=form_for(@workout) do |f| %>
   <div class="form-inline">
-  <%= f.text_field :name, class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: "Workout name" %>
-  <%= f.label :date, "Date: ", class:'mr-sm-2'%>
-  <%= f.date_field :date, max: Date.today, value: (Date.today unless @workout.date), class: 'form-control mb-2 mr-sm-2 mb-sm-0'%>
+    <%= f.text_field :name, class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: "Workout name" %>
+    <%= f.label :date, "Date: ", class:'mr-sm-2'%>
+    <%= f.date_field :date, max: Date.today, value: (Date.today unless @workout.date), class: 'form-control mb-2 mr-sm-2 mb-sm-0'%>
   </div>
   <br>
   <h4>Exercises</h4>
-  <div class = "form-inline">
-    <%= f.collection_check_boxes :exercise_ids, Exercise.all, :id, :name do |b| %>
-      <div class = "form-check form-check-inline">
-        <%=b.check_box(class: "form-check-input")%>  <%=b.label(class:"form-check-label")%>
-      </div>
-    <% end %>
-    <br>
-  </div>
+
+  <%=f.fields_for :exercises, @workout.exercise_workouts do |ew|%>
+    <div class = "form-inline">
+      <%=ew.collection_select :exercise_id, Exercise.all, :id, :name, {include_blank: "Choose..."}, class:'custom-select mb-2 mr-sm-2 mb-sm-0' %>
+      <%=ew.label :reps, "Reps: " %>
+      <%=ew.text_field :reps, placeholder: "0", class: 'form-control mb-2 mr-sm-2 mb-sm-0' %>
+    </div>
+  <% end %>
+
+
   <br>
+
   <div class="form-inline">
     <%=f.fields_for :exercises, @workout.exercises.build do |exercise_builder|%>
       <%=exercise_builder.text_field :name, class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: 'New exercise'%>
       <%=exercise_builder.label :bodypart, "Body Part: ", class:'mr-sm-2' %>
       <%=exercise_builder.select :bodypart, Exercise.body_parts, {include_blank: "Choose..."},class:'custom-select mb-2 mr-sm-2 mb-sm-0'%>
+      <%=text_field_tag :reps, ExerciseWorkout.new.reps%>
     <% end %>
   </div>
   <br>
