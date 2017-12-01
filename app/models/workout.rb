@@ -10,6 +10,13 @@ class Workout < ApplicationRecord
 
   def exercises_attributes=(exercise_attributes)
     exercise_attributes.each_value do |exercise_params|
+      unless exercise_params.values.any? {|i| i.empty? } || exercise_params[:name]
+        new_exer_workout = ExerciseWorkout.find_or_create_by(exercise_id: exercise_params[:exercise_id ], workout: self)
+        new_exer_workout.reps = exercise_params[:reps]
+        exercise_workouts << new_exer_workout
+        binding.pry
+      end
+
       unless exercise_params.values.any? {|i| i.empty? } || Exercise.body_parts.exclude?(exercise_params[:bodypart])
         exercises << Exercise.find_or_create_by(exercise_params)
       end
