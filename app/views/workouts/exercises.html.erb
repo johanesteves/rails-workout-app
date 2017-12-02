@@ -20,6 +20,12 @@
         <%=exercise_builder.text_field :name, class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: 'Add exercise'%>
         <%=exercise_builder.label :bodypart, "Body Part: ", class:'mr-sm-2' %>
         <%=exercise_builder.select :bodypart, Exercise.body_parts, {include_blank: "Choose..."},class:'custom-select mb-2 mr-sm-2 mb-sm-0'%>
+
+        <%=exercise_builder.fields_for :exercise_workout, @exercise.exercise_workouts.build do |ex_workout_builder|%>
+          <%=ex_workout_builder.label :reps, "Reps: " %>
+          <%=ex_workout_builder.text_field :reps, placeholder: "0", class: 'form-control mb-2 mr-sm-2 mb-sm-0' %>
+        <%end%>
+
     <% end %>
   </div>
 
