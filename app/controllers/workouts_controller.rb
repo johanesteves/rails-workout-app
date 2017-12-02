@@ -10,7 +10,7 @@ class WorkoutsController < ApplicationController
   def new
     @workout = Workout.new
     4.times{ |i| @workout.exercise_workouts.build }
-    @exercises = Exercise.all
+    @exercise = @workout.exercises.build
   end
 
   def show
@@ -52,12 +52,13 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def exercises; end
-
+  def exercises
+    @exercise = @workout.exercises.build
+  end
   private
 
   def workout_params
-    params.require(:workout).permit(:name, :date, exercise_ids: [], exercises_attributes: [:name, :bodypart, :exercise_id, :reps])
+    params.require(:workout).permit(:name, :date, exercise_ids: [], exercises_attributes: [:name, :bodypart, :exercise_id, :reps, exercise_workout: [:reps]])
   end
 
   def set_workout
