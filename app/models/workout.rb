@@ -20,7 +20,7 @@ class Workout < ApplicationRecord
         new_exercise = Exercise.find_or_create_by(name: exercise_params[:name], bodypart: exercise_params[:bodypart])
         exercise_workout = ExerciseWorkout.find_or_create_by(exercise: new_exercise, workout: self)
         exercise_workout.reps = exercise_params[:exercise_workout][:reps]
-        exercise_workouts << exercise_workoutexi
+        exercise_workouts << exercise_workout
       end
     end
   end
